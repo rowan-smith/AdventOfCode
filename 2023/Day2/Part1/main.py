@@ -1,11 +1,12 @@
-from Game import load_games
+from Game import GameCollection
 
-GAMES = load_games("input.txt")
+GAME_COLLECTION = GameCollection()
+GAME_COLLECTION.load_games("input.txt")
 
 
 def main():
     total = 0
-    for game in GAMES:
+    for game in GAME_COLLECTION.games:
         if game.is_possible():
             total += game.game_number
 

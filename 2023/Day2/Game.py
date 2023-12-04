@@ -51,21 +51,23 @@ class Game:
         return max_values
 
 
-def load_games(file: str):
-    games: list[Game] = []
-    with open(file, "r") as input_file:
-        for line in input_file.read().splitlines():
-            line = line.replace("Game ", "")
-            game_number = int(line.split(":")[0])
+class GameCollection:
+    def __init__(self):
+        self.games: list[Game] = []
 
-            line = line.replace(f"{game_number}: ", "")
+    def load_games(self, file: str):
+        with open(file, "r") as input_file:
+            for line in input_file.read().splitlines():
+                line = line.replace("Game ", "")
+                game_number = int(line.split(":")[0])
 
-            game_set = [i for i in line.split(";")]
+                line = line.replace(f"{game_number}: ", "")
 
-            game_set_list = []
-            for num, game_colors in enumerate(game_set):
-                colours_list = game_colors.strip().split(", ")
-                game_set_list.append(GameSet(num, {i.split(" ")[1]: int(i.split(" ")[0]) for i in colours_list}))
+                game_set = [i for i in line.split(";")]
 
-            games.append(Game(game_number, game_set_list))
-    return games
+                game_set_list = []
+                for num, game_colors in enumerate(game_set):
+                    colours_list = game_colors.strip().split(", ")
+                    game_set_list.append(GameSet(num, {i.split(" ")[1]: int(i.split(" ")[0]) for i in colours_list}))
+
+                self.games.append(Game(game_number, game_set_list))
