@@ -1,3 +1,6 @@
+from functools import reduce
+from operator import mul
+
 from Game import load_games
 
 GAMES = load_games("input.txt")
@@ -6,9 +9,7 @@ GAMES = load_games("input.txt")
 def main():
     total = 0
     for game in GAMES:
-        if game.is_possible():
-            total += game.game_number
-
+        total += reduce(mul, game.max_colours().values())
     print(total)
 
 
