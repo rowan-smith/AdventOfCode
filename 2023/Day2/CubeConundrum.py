@@ -5,8 +5,7 @@ COLOUR_LIMIT = {
 }
 
 
-class GameSet:
-
+class CubeSet:
     def __init__(self, number: int, colour_map: dict):
         self.set_number = number
         self.colour_map = colour_map
@@ -23,8 +22,8 @@ class GameSet:
         return True
 
 
-class Game:
-    def __init__(self, game: int, game_sets: list[GameSet]):
+class CubeConundrumGame:
+    def __init__(self, game: int, game_sets: list[CubeSet]):
         self.game_number = game
         self.game_sets = game_sets
 
@@ -53,7 +52,7 @@ class Game:
 
 class GameCollection:
     def __init__(self):
-        self.games: list[Game] = []
+        self.games: list[CubeConundrumGame] = []
 
     def load_games(self, file: str):
         with open(file, "r") as input_file:
@@ -68,6 +67,6 @@ class GameCollection:
                 game_set_list = []
                 for num, game_colors in enumerate(game_set):
                     colours_list = game_colors.strip().split(", ")
-                    game_set_list.append(GameSet(num, {i.split(" ")[1]: int(i.split(" ")[0]) for i in colours_list}))
+                    game_set_list.append(CubeSet(num, {i.split(" ")[1]: int(i.split(" ")[0]) for i in colours_list}))
 
-                self.games.append(Game(game_number, game_set_list))
+                self.games.append(CubeConundrumGame(game_number, game_set_list))

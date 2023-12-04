@@ -1,4 +1,4 @@
-from Game import GameCollection
+from CubeConundrum import GameCollection
 
 GAME_COLLECTION = GameCollection()
 GAME_COLLECTION.load_games("input.txt")
