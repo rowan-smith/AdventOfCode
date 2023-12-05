@@ -1,7 +1,7 @@
 from Scratchcards import ScratchCardCollection
 
 SCRATCH_CARDS = ScratchCardCollection()
-SCRATCH_CARDS.load_scratch_cards("example.txt")
+SCRATCH_CARDS.load_scratch_cards("input.txt")
 
 
 def main():
